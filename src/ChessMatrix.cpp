@@ -33,15 +33,61 @@ int ChessMatrix::getElement(const size_t& i, const size_t& j) const
         return m_matrix[((i*dimN)/2)+j];
 }
 
+ChessMatrix ChessMatrix::add(const ChessMatrix& rhs) const
+{
+    //TODO THROW Exception on uncorrect sizes
+    ChessMatrix outputBuffer(dimN,dimM);
+    for(size_t i = 0; i < m_matrix.size(); ++i)
+        outputBuffer.m_matrix[i] = (m_matrix[i] + rhs.m_matrix[i]);
+
+    return outputBuffer;
+}
+
+// TODO implement
+ChessMatrix ChessMatrix::multiply(const ChessMatrix& rhs) const
+{
+    //TODO THROW Exception on uncorrect sizes
+    ChessMatrix outputBuffer(dimN,dimM);
+    return outputBuffer;
+}
+
+ //Operators
+ChessMatrix ChessMatrix::operator+(const ChessMatrix& rhs) const
+{
+    //TODO THROW Exception on uncorrect sizes
+    return this->add(rhs);
+}
+
+ChessMatrix::ProxyObject ChessMatrix::operator[](const size_t& rowInd) const
+{
+    return ProxyObject(rowInd,*this);
+}
+
+ChessMatrix ChessMatrix::operator*(const ChessMatrix& rhs) const
+{
+    //TODO THROW Exception on uncorrect sizes
+    return this->multiply(rhs);
+}
+
+//---------------Static functions-----------------//
 bool ChessMatrix::isZeroValue(const size_t& i, const size_t& j)
 {
     return (i%2 == 0 && j%2 == 1) || (i%2 == 1 && j%2 == 0);
 }
 
-//Operators
-ChessMatrix::ProxyObject ChessMatrix::operator[](const size_t& rowInd) const
+//----------Public non-const member functions------//
+
+ChessMatrix& ChessMatrix::operator= (const ChessMatrix& rhs)
 {
-    return ProxyObject(rowInd,*this);
+    //TODO THROW Exception on uncorrect sizes
+
+    this->m_matrix = rhs.m_matrix;
+}
+
+ChessMatrix& ChessMatrix::operator+=(const ChessMatrix& rhs)
+{
+    //TODO THROW Exception on uncorrect sizes
+    *this = this->add(rhs);
 }
 
 //-------------Private member functions------------//

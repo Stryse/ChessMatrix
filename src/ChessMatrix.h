@@ -60,6 +60,7 @@ class ChessMatrix
         void setElement(const size_t& i, const size_t& j);
 
         //Operators
+        ChessMatrix& operator= (const ChessMatrix& rhs);
         ChessMatrix& operator+=(const ChessMatrix& rhs);
         ChessMatrix& operator*=(const ChessMatrix& rhs);
        
