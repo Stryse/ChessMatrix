@@ -30,7 +30,7 @@ int ChessMatrix::getElement(const size_t& i, const size_t& j) const
     if(ChessMatrix::isZeroValue(i,j))
         return 0;
     else
-        return m_matrix[((i*dimN)/2)+j];
+        return m_matrix[(i*dimN + j)/2];
 }
 
 ChessMatrix ChessMatrix::add(const ChessMatrix& rhs) const
@@ -92,7 +92,7 @@ ChessMatrix& ChessMatrix::operator+=(const ChessMatrix& rhs)
 
 //-------------Private member functions------------//
 constexpr size_t ChessMatrix::calcBufferSize(const size_t& n, const size_t& m) const noexcept
-{ return ((n*m)%2 == 0 ? (n*m)/4 : ((n*m)+1)/4); }
+{ return ((n*m)%2 == 0 ? (n*m)/2 : ((n*m)+1)/2); }
 
 //-----------------Friend functions----------------//
 
