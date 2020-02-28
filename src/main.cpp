@@ -25,6 +25,10 @@ int main(void)
     ChessMatrix CM2(N,M);
     ifs >> CM2;
 
-    std::cout << CM2+CM << std::endl;
+    std::cout << "SIZE:" << CM.dimM << " " << CM.dimN << " " << CM2.dimM << " " << CM2.dimN << std::endl;
+
+    CM += CM2;
+    std::cout << CM;
+
     return 0;
 }

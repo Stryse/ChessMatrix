@@ -13,14 +13,20 @@ class ChessMatrix
         class ProxyObject
         {
             private:
+                //Fields
                 const ChessMatrix& m_parent;
                 const size_t& m_rowIndex;
+                //Constructors
                 ProxyObject(const size_t& rowInd, const ChessMatrix& parent);
                 ProxyObject(const ProxyObject& rhs);
 
-            public: // Public only to parent class
-                ProxyObject() = delete;
+                //Operator
                 int operator[](const size_t& colInd) const;
+
+                //Deleted functions
+                ProxyObject() = delete;
+                void* operator new (std::size_t size) = delete;
+                void* operator new[] (std::size_t size) = delete;
 
                 friend class ChessMatrix;
         };
@@ -31,7 +37,7 @@ class ChessMatrix
 
     public:
         const size_t dimM, dimN;  // Sizes
-        enum class ChessMatrixExceptions { UNMATCHING_SIZE, INVALID_DIMS_FOR_MULTIPLY,
+        enum class ChessMatrixExceptions { UNMATCHING_DIMENSIONS, INVALID_DIMS_FOR_MULTIPLY,
                                            INDEX_OUT_OF_BOUNDS };
 
     public:

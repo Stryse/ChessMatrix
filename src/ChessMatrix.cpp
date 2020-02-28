@@ -45,7 +45,7 @@ ChessMatrix ChessMatrix::add(const ChessMatrix& rhs) const
 {
     // Matrices' dimensions must match
     if(dimM != rhs.dimM || dimN != rhs.dimN)
-        throw ChessMatrixExceptions::UNMATCHING_SIZE;
+        throw ChessMatrixExceptions::UNMATCHING_DIMENSIONS;
 
     ChessMatrix outputBuffer(dimM,dimN);
     for(size_t i = 0; i < m_matrix.size(); ++i)
@@ -87,20 +87,23 @@ bool ChessMatrix::isZeroValue(const size_t& i, const size_t& j)
 }
 
 //----------Public non-const member functions------//
-/*
+
 ChessMatrix& ChessMatrix::operator= (const ChessMatrix& rhs)
 {
-    //TODO THROW Exception on uncorrect sizes
+    // Matrices' dimensions must match
+    if(dimM != rhs.dimM || dimN != rhs.dimN)
+        throw ChessMatrixExceptions::UNMATCHING_DIMENSIONS;
 
     this->m_matrix = rhs.m_matrix;
+    return *this;
 }
 
 ChessMatrix& ChessMatrix::operator+=(const ChessMatrix& rhs)
 {
-    //TODO THROW Exception on uncorrect sizes
     *this = this->add(rhs);
+    return *this;
 }
-*/
+
 //-------------Private member functions------------//
 constexpr size_t ChessMatrix::calcBufferSize(const size_t& n, const size_t& m) const noexcept
 { return ((n*m)%2 == 0 ? (n*m)/2 : ((n*m)+1)/2); }
