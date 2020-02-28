@@ -18,7 +18,7 @@ int ChessMatrix::ProxyObject::operator[](const size_t& colInd) const
 //--------------------Constructors------------------//
 //Size Parameters
 ChessMatrix::ChessMatrix(const size_t& m, const size_t& n)
-            :m_matrix(calcBufferSize(n,m)), dimM(m), dimN(n) {}
+            :m_matrix(calcBufferSize(n,m),0), dimM(m), dimN(n) {}
 
 //Copy Constructor
 ChessMatrix::ChessMatrix(const ChessMatrix& rhs)
@@ -72,7 +72,7 @@ ChessMatrix ChessMatrix::operator+(const ChessMatrix& rhs) const
 
 ChessMatrix::ProxyObject ChessMatrix::operator[](const size_t& rowInd) const
 {
-    return ProxyObject(rowInd,*this);
+    return ChessMatrix::ProxyObject(rowInd,*this);
 }
 
 ChessMatrix ChessMatrix::operator*(const ChessMatrix& rhs) const
