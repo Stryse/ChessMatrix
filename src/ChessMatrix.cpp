@@ -30,7 +30,7 @@ int ChessMatrix::getElement(const size_t& i, const size_t& j) const
     if(ChessMatrix::isZeroValue(i,j))
         return 0;
     else
-        return m_matrix[(i*dimM + j)/2];
+        return m_matrix[(i*dimN + j)/2];
 }
 
 ChessMatrix ChessMatrix::add(const ChessMatrix& rhs) const
@@ -98,25 +98,16 @@ constexpr size_t ChessMatrix::calcBufferSize(const size_t& n, const size_t& m) c
 
 std::istream& operator>>(std::istream& stream, ChessMatrix& matrix)
 {
-    // TODO take out temp
-    int temp;
     for(size_t i = 0; i < matrix.m_matrix.size(); ++i)
-    {
-        stream >> temp;
-        matrix.m_matrix[i] = temp;
-    }
+        stream >> matrix.m_matrix[i];
     return stream;
 }
 
 std::ostream& operator<<(std::ostream& stream, const ChessMatrix& matrix)
 {
-    for(const auto& item : matrix.m_matrix)
-        std::cout << item << " ";
-    std::cout << std::endl;
-
-    for(size_t i = 0; i < matrix.dimN; ++i)
+    for(size_t i = 0; i < matrix.dimM; ++i)
         {
-            for(size_t j = 0; j < matrix.dimM; ++j)
+            for(size_t j = 0; j < matrix.dimN; ++j)
                 stream << matrix.getElement(i,j) << " ";
             std::cout << std::endl;
         }
