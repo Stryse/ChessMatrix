@@ -7,18 +7,18 @@ ChessMatrix::ProxyObject::ProxyObject(const size_t& rowInd, const ChessMatrix& p
             :m_parent(parent), m_rowIndex(rowInd) {}
 
 //Public  member
-int ChessMatrix::ProxyObject::operator[](const size_t& colInd)
+int ChessMatrix::ProxyObject::operator[](const size_t& colInd) const
 {
     return m_parent.getElement(m_rowIndex,colInd);
 }
 
 //--------------------Constructors------------------//
-ChessMatrix::ChessMatrix(const size_t& n, const size_t& m)
-            :m_matrix(calcBufferSize(n,m)), dimN(n), dimM(m) {}
+ChessMatrix::ChessMatrix(const size_t& m, const size_t& n)
+            :m_matrix(calcBufferSize(n,m)), dimM(m), dimN(n) {}
 
 
 ChessMatrix::ChessMatrix(const ChessMatrix& rhs)
-            :m_matrix(rhs.m_matrix), dimN(rhs.dimN), dimM(rhs.dimM) {}
+            :m_matrix(rhs.m_matrix), dimM(rhs.dimM), dimN(rhs.dimN) {}
 
 
 ChessMatrix::~ChessMatrix() {}
@@ -30,13 +30,13 @@ int ChessMatrix::getElement(const size_t& i, const size_t& j) const
     if(ChessMatrix::isZeroValue(i,j))
         return 0;
     else
-        return m_matrix[(i*dimN + j)/2];
+        return m_matrix[(i*dimM + j)/2];
 }
 
 ChessMatrix ChessMatrix::add(const ChessMatrix& rhs) const
 {
     //TODO THROW Exception on uncorrect sizes
-    ChessMatrix outputBuffer(dimN,dimM);
+    ChessMatrix outputBuffer(dimM,dimN);
     for(size_t i = 0; i < m_matrix.size(); ++i)
         outputBuffer.m_matrix[i] = (m_matrix[i] + rhs.m_matrix[i]);
 
@@ -47,7 +47,7 @@ ChessMatrix ChessMatrix::add(const ChessMatrix& rhs) const
 ChessMatrix ChessMatrix::multiply(const ChessMatrix& rhs) const
 {
     //TODO THROW Exception on uncorrect sizes
-    ChessMatrix outputBuffer(dimN,dimM);
+    ChessMatrix outputBuffer(dimM,dimN);
     return outputBuffer;
 }
 
@@ -76,7 +76,7 @@ bool ChessMatrix::isZeroValue(const size_t& i, const size_t& j)
 }
 
 //----------Public non-const member functions------//
-
+/*
 ChessMatrix& ChessMatrix::operator= (const ChessMatrix& rhs)
 {
     //TODO THROW Exception on uncorrect sizes
@@ -89,7 +89,7 @@ ChessMatrix& ChessMatrix::operator+=(const ChessMatrix& rhs)
     //TODO THROW Exception on uncorrect sizes
     *this = this->add(rhs);
 }
-
+*/
 //-------------Private member functions------------//
 constexpr size_t ChessMatrix::calcBufferSize(const size_t& n, const size_t& m) const noexcept
 { return ((n*m)%2 == 0 ? (n*m)/2 : ((n*m)+1)/2); }
@@ -98,6 +98,7 @@ constexpr size_t ChessMatrix::calcBufferSize(const size_t& n, const size_t& m) c
 
 std::istream& operator>>(std::istream& stream, ChessMatrix& matrix)
 {
+    // TODO take out temp
     int temp;
     for(size_t i = 0; i < matrix.m_matrix.size(); ++i)
     {
@@ -109,11 +110,14 @@ std::istream& operator>>(std::istream& stream, ChessMatrix& matrix)
 
 std::ostream& operator<<(std::ostream& stream, const ChessMatrix& matrix)
 {
+    for(const auto& item : matrix.m_matrix)
+        std::cout << item << " ";
+    std::cout << std::endl;
+
     for(size_t i = 0; i < matrix.dimN; ++i)
         {
             for(size_t j = 0; j < matrix.dimM; ++j)
                 stream << matrix.getElement(i,j) << " ";
-
             std::cout << std::endl;
         }
     return stream;

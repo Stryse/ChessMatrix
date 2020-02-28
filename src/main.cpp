@@ -21,7 +21,8 @@ int main(void)
     ChessMatrix CM(N,M);
     ifs >> CM;
 
-    std::cout << CM;
+    std::cout << CM << std::endl;
+    std::cout << CM[1][1] << std::endl;
 
     return 0;
 }

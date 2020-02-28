@@ -19,7 +19,7 @@ class ChessMatrix
             public: // Public only to parent class
                 ProxyObject() = delete;
                 ProxyObject(const size_t& rowInd, const ChessMatrix& parent);
-                int operator[](const size_t& colInd);
+                int operator[](const size_t& colInd) const;
         };
 
 
@@ -27,14 +27,14 @@ class ChessMatrix
         std::vector<int> m_matrix;
 
     public:
-        const size_t dimN, dimM;  // Sizes
+        const size_t dimM, dimN;  // Sizes
 
 
     public:
 
     //--------------Constructors-----------------------//
         ChessMatrix() = delete;                        // Default not permitted
-        ChessMatrix(const size_t& n, const size_t& m); // Size parameters
+        ChessMatrix(const size_t& m, const size_t& n); // Size parameters
         ChessMatrix(const ChessMatrix& rhs);           // Copy constructor
         ~ChessMatrix();                                // Destructor
 
@@ -57,15 +57,13 @@ class ChessMatrix
 
     //----------Public non-const member functions------//
 
-        void setElement(const size_t& i, const size_t& j);
-
         //Operators
         ChessMatrix& operator= (const ChessMatrix& rhs);
         ChessMatrix& operator+=(const ChessMatrix& rhs);
         ChessMatrix& operator*=(const ChessMatrix& rhs);
        
     //--------------Private member functions-----------//
-        constexpr size_t calcBufferSize(const size_t& n, const size_t& m) const noexcept;
+        constexpr size_t calcBufferSize(const size_t& m, const size_t& n) const noexcept;
     
     //-----------------Friend functions----------------//
 
