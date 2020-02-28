@@ -21,8 +21,10 @@ int main(void)
     ChessMatrix CM(N,M);
     ifs >> CM;
 
-    std::cout << CM << std::endl;
-    std::cout << CM[1][1] << std::endl;
+    ifs >> N >> M;
+    ChessMatrix CM2(N,M);
+    ifs >> CM2;
 
+    std::cout << CM2+CM << std::endl;
     return 0;
 }

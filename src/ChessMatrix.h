@@ -14,12 +14,15 @@ class ChessMatrix
         {
             private:
                 const ChessMatrix& m_parent;
-                const size_t m_rowIndex;
+                const size_t& m_rowIndex;
+                ProxyObject(const size_t& rowInd, const ChessMatrix& parent);
+                ProxyObject(const ProxyObject& rhs);
 
             public: // Public only to parent class
                 ProxyObject() = delete;
-                ProxyObject(const size_t& rowInd, const ChessMatrix& parent);
                 int operator[](const size_t& colInd) const;
+
+                friend class ChessMatrix;
         };
 
 
@@ -28,7 +31,8 @@ class ChessMatrix
 
     public:
         const size_t dimM, dimN;  // Sizes
-
+        enum class ChessMatrixExceptions { UNMATCHING_SIZE, INVALID_DIMS_FOR_MULTIPLY,
+                                           INDEX_OUT_OF_BOUNDS };
 
     public:
 
@@ -63,6 +67,7 @@ class ChessMatrix
         ChessMatrix& operator*=(const ChessMatrix& rhs);
        
     //--------------Private member functions-----------//
+    private:
         constexpr size_t calcBufferSize(const size_t& m, const size_t& n) const noexcept;
     
     //-----------------Friend functions----------------//

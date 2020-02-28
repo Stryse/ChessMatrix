@@ -2,9 +2,12 @@
 
 //--------------Inner class ProxyObject------------//
 
-//Ctor
+//Constructor
 ChessMatrix::ProxyObject::ProxyObject(const size_t& rowInd, const ChessMatrix& parent)
             :m_parent(parent), m_rowIndex(rowInd) {}
+
+ChessMatrix::ProxyObject::ProxyObject(const ProxyObject& rhs)
+            :m_parent(rhs.m_parent), m_rowIndex(rhs.m_rowIndex) {}
 
 //Public  member
 int ChessMatrix::ProxyObject::operator[](const size_t& colInd) const
@@ -13,20 +16,25 @@ int ChessMatrix::ProxyObject::operator[](const size_t& colInd) const
 }
 
 //--------------------Constructors------------------//
+//Size Parameters
 ChessMatrix::ChessMatrix(const size_t& m, const size_t& n)
             :m_matrix(calcBufferSize(n,m)), dimM(m), dimN(n) {}
 
-
+//Copy Constructor
 ChessMatrix::ChessMatrix(const ChessMatrix& rhs)
             :m_matrix(rhs.m_matrix), dimM(rhs.dimM), dimN(rhs.dimN) {}
 
-
+//Destructor
 ChessMatrix::~ChessMatrix() {}
 
 //----------Public const member functions----------//
 
 int ChessMatrix::getElement(const size_t& i, const size_t& j) const
 {
+    //Upon overindexing
+    if(i >= dimM || j >= dimN)
+        throw ChessMatrixExceptions::INDEX_OUT_OF_BOUNDS;
+
     if(ChessMatrix::isZeroValue(i,j))
         return 0;
     else
@@ -35,7 +43,10 @@ int ChessMatrix::getElement(const size_t& i, const size_t& j) const
 
 ChessMatrix ChessMatrix::add(const ChessMatrix& rhs) const
 {
-    //TODO THROW Exception on uncorrect sizes
+    // Matrices' dimensions must match
+    if(dimM != rhs.dimM || dimN != rhs.dimN)
+        throw ChessMatrixExceptions::UNMATCHING_SIZE;
+
     ChessMatrix outputBuffer(dimM,dimN);
     for(size_t i = 0; i < m_matrix.size(); ++i)
         outputBuffer.m_matrix[i] = (m_matrix[i] + rhs.m_matrix[i]);
@@ -46,7 +57,9 @@ ChessMatrix ChessMatrix::add(const ChessMatrix& rhs) const
 // TODO implement
 ChessMatrix ChessMatrix::multiply(const ChessMatrix& rhs) const
 {
-    //TODO THROW Exception on uncorrect sizes
+    if(dimN != rhs.dimM)
+        throw ChessMatrixExceptions::INVALID_DIMS_FOR_MULTIPLY;
+
     ChessMatrix outputBuffer(dimM,dimN);
     return outputBuffer;
 }
@@ -54,7 +67,6 @@ ChessMatrix ChessMatrix::multiply(const ChessMatrix& rhs) const
  //Operators
 ChessMatrix ChessMatrix::operator+(const ChessMatrix& rhs) const
 {
-    //TODO THROW Exception on uncorrect sizes
     return this->add(rhs);
 }
 
@@ -65,7 +77,6 @@ ChessMatrix::ProxyObject ChessMatrix::operator[](const size_t& rowInd) const
 
 ChessMatrix ChessMatrix::operator*(const ChessMatrix& rhs) const
 {
-    //TODO THROW Exception on uncorrect sizes
     return this->multiply(rhs);
 }
 
