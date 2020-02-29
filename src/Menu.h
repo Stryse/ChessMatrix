@@ -13,8 +13,7 @@ class Menu
 
     private:
         void printOptions();
-        void printMatrixOne();
-        void printMatrixTwo();
+        void printMatrix(ChessMatrix* matrix);
         void getElementOfMatrix(ChessMatrix* matrix);
         void addMatrices();
         void multiplyMatrices();
