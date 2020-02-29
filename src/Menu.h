@@ -18,6 +18,7 @@ class Menu
         void addMatrices() const;
         void addToMatrix(ChessMatrix* lhs, ChessMatrix* rhs);
         void multiplyMatrices() const;
+        void multiplyToMatrix(ChessMatrix* lhs, ChessMatrix* rhs);
 
     public:
         //Default with 8x8 matrix                                                         
@@ -30,6 +31,7 @@ class Menu
 
         ~Menu();
 
+        //Menu loop
         void init();
 
 };

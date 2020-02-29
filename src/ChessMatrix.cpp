@@ -60,6 +60,7 @@ ChessMatrix ChessMatrix::add(const ChessMatrix& rhs) const
 // TODO implement
 ChessMatrix ChessMatrix::multiply(const ChessMatrix& rhs) const
 {
+    // TODO Implement
     if(dimN != rhs.dimM)
         throw ChessMatrixExceptions::INVALID_DIMS_FOR_MULTIPLY;
 
@@ -104,6 +105,12 @@ ChessMatrix& ChessMatrix::operator= (const ChessMatrix& rhs)
 ChessMatrix& ChessMatrix::operator+=(const ChessMatrix& rhs)
 {
     *this = this->add(rhs);
+    return *this;
+}
+
+ChessMatrix& ChessMatrix::operator*=(const ChessMatrix& rhs)
+{
+    *this = this->multiply(rhs);
     return *this;
 }
 

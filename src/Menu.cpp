@@ -84,6 +84,7 @@ void Menu::init()
         case 7: addToMatrix(m_chMatrix_2, m_chMatrix_1); break;
 
         default: std::cout << "Menu point not found, exiting..." << std::endl;
+        return;
         break;
         }
     } while (choice != 0);
@@ -171,4 +172,51 @@ void Menu::addToMatrix(ChessMatrix* lhs, ChessMatrix* rhs)
     }
     std::cout << "========================= ADD TO MATRIX =========================" << std::endl;
     std::cout << "Addition was successfull" << std::endl;
+}
+
+void Menu::multiplyMatrices() const
+{
+    ChessMatrix* resultMatrix = nullptr;
+    try {
+        resultMatrix = new ChessMatrix(((*m_chMatrix_1) * (*m_chMatrix_2)));
+    } catch (ChessMatrix::ChessMatrixExceptions excpt) {
+        switch (excpt)
+        {
+        case ChessMatrix::ChessMatrixExceptions::INVALID_DIMS_FOR_MULTIPLY:
+            std::cout << "Cannot multiply two matrices with unproper dimensions!" << std::endl;
+            delete resultMatrix;
+            return;
+            break;
+        
+        default:
+            std::cout << "Unhandled exception!" << std::endl;
+            delete resultMatrix;
+            return;
+            break;
+        }
+    }
+    std::cout << "=========================MULTIPLICATION RESULT========================" << std::endl;
+    std::cout << *resultMatrix;
+    delete resultMatrix;
+}
+
+void Menu::multiplyToMatrix(ChessMatrix* lhs, ChessMatrix* rhs)
+{
+    try {
+        (*lhs) *= (*rhs);
+    } catch (ChessMatrix::ChessMatrixExceptions excpt) {
+        switch (excpt)
+        {
+        case ChessMatrix::ChessMatrixExceptions::INVALID_DIMS_FOR_MULTIPLY:
+            std::cout << "Cannot multiply two matrices with unproper dimensions!" << std::endl;
+            return;
+            break;
+        default:
+            std::cout << "Unhandled exception!" << std::endl;
+            return;
+            break;
+        }
+    }
+    std::cout << "========================= MULTIPLY TO MATRIX =========================" << std::endl;
+    std::cout << "Multiplication was successfull" << std::endl;
 }
