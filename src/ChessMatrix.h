@@ -43,10 +43,11 @@ class ChessMatrix
     public:
 
     //--------------Constructors-----------------------//
-        ChessMatrix() = delete;                        // Default not permitted
-        ChessMatrix(const size_t& m, const size_t& n); // Size parameters
-        ChessMatrix(const ChessMatrix& rhs);           // Copy constructor
-        ~ChessMatrix();                                // Destructor
+        ChessMatrix() = delete;                                     // Default not permitted
+        ChessMatrix(const size_t& m, const size_t& n);              // Size parameters
+        ChessMatrix(const size_t& m, const size_t& n, int values);  // Size w/ Values included 
+        ChessMatrix(const ChessMatrix& rhs);                        // Copy constructor
+        ~ChessMatrix();                                             // Destructor
 
 
     //----------Public const member functions----------//

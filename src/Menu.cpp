@@ -91,7 +91,7 @@ void Menu::getElementOfMatrix(ChessMatrix *matrix)
         size_t rowNum;
         size_t colNum;
 
-        std::cout << "============================" << std::endl;
+        std::cout << "==============================" << std::endl;
         std::cout << "Please enter the row index: ";
         std::cin >> rowNum;
         std::cout << "Please enter the column index: ";

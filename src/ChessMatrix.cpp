@@ -20,6 +20,9 @@ int ChessMatrix::ProxyObject::operator[](const size_t& colInd) const
 ChessMatrix::ChessMatrix(const size_t& m, const size_t& n)
             :m_matrix(calcBufferSize(n,m),1), dimM(m), dimN(n) {}
 
+ChessMatrix::ChessMatrix(const size_t& m, const size_t& n, int values)
+            :m_matrix(calcBufferSize(n,m),values), dimM(m), dimN(n) {}
+
 //Copy Constructor
 ChessMatrix::ChessMatrix(const ChessMatrix& rhs)
             :m_matrix(rhs.m_matrix), dimM(rhs.dimM), dimN(rhs.dimN) {}
