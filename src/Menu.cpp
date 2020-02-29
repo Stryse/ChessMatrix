@@ -4,9 +4,8 @@
 //---------------Constructors-----------------//
 
 Menu::Menu()
-    : m_chMatrix_1(nullptr), m_chMatrix_2(nullptr)
-{
-}
+    : m_chMatrix_1(new ChessMatrix(8,8)), m_chMatrix_2(new ChessMatrix(8,8))
+{}
 
 //Matrices are read from file at inputPath
 Menu::Menu(const std::string &inputPath)
@@ -91,7 +90,7 @@ void Menu::getElementOfMatrix(ChessMatrix *matrix)
         size_t rowNum;
         size_t colNum;
 
-        std::cout << "==============================" << std::endl;
+        std::cout << "==================================" << std::endl;
         std::cout << "Please enter the row index: ";
         std::cin >> rowNum;
         std::cout << "Please enter the column index: ";

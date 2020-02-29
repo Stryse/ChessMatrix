@@ -38,9 +38,9 @@ int main(int argc,const char** argv)
 
 void printProgramInstructions()
 {
-    std::cout << "========================== ChessMatrix Program ==========================" << std::endl;
+    std::cout << "============================== ChessMatrix Program ==============================" << std::endl;
     std::cout << "The program can be used with either:" << std::endl;
-    std::cout << "(1) Without command line arguments (Matrixes with values of 0 and 1 will be created)" << std::endl;
+    std::cout << "(1) Without command line arguments (8x8 Matrixes with values of 0 and 1 will be created)" << std::endl;
     std::cout << "(2) With ONE command line argument (Path of a text file with 2 Matrix informations)" << std::endl;
     std::cout << "\tMatrix informations: " << std::endl << "\t\tRow number, Column number, Values" << std::endl;
     std::cout << "(3) With SIX  commmand line arguments: " << std::endl;
