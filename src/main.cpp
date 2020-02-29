@@ -5,6 +5,8 @@
 #include "./ChessMatrix.h"
 #include "./Menu.h"
 
+//#define NORMAL_MODE
+#ifdef NORMAL_MODE
 void printProgramInstructions();
 
 int main(int argc,const char** argv)
@@ -51,3 +53,8 @@ void printProgramInstructions()
     std::cout << "(3) With SIX  commmand line arguments: " << std::endl;
     std::cout << "(RowNumber_1,Columnnumber_1,Values_1,\tRowNumber_2,Columnnumber_2,Values_2)" << std::endl; 
 }
+#else
+#define CATCH_CONFIG_MAIN
+#include "./catch.hpp"
+#include "./Tests.h"
+#endif
