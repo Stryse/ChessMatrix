@@ -27,7 +27,7 @@ int main(int argc,const char** argv)
                     return 1;
                 }
         break;
-        case 7: m = new Menu(std::atol(argv[1]),std::atol(argv[2]),
+        case 7: m = new Menu(std::atol(argv[1]),std::atol(argv[2]), //Entry
                              std::atol(argv[3]),std::atol(argv[4]),
                              std::atol(argv[5]),std::atol(argv[6]));
 

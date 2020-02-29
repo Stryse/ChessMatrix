@@ -13,7 +13,7 @@ Menu::Menu(const std::string &inputPath)
 {
     std::ifstream ifs(inputPath);
     if (ifs.fail())
-        throw std::runtime_error(std::string("An error occured while opening \"") +
+        throw std::runtime_error(std::string("An error occured while opening file: \"") +
                                  inputPath + std::string("\" please check if the file is accessible!"));
 
     size_t M, N;
