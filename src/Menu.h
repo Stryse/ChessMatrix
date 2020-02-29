@@ -16,6 +16,7 @@ class Menu
         void printMatrix(ChessMatrix* matrix);
         void getElementOfMatrix(ChessMatrix* matrix);
         void addMatrices();
+        void addToMatrix(ChessMatrix* lhs, ChessMatrix* rhs);
         void multiplyMatrices();
 
     public:

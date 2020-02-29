@@ -47,6 +47,8 @@ void Menu::printOptions()
     std::cout << " 3. - Get element M[i,j] from Matrix One" << std::endl;
     std::cout << " 4. - Get element M[i,j] from Matrix Two" << std::endl;
     std::cout << " 5. - Print result of (Matrix One + Matrix Two)" << std::endl;
+    std::cout << " 6. - Add Matrix Two to Matrix One" << std::endl;
+    std::cout << " 7. - Add Matrix One to Matrix Two" << std::endl;
 }
 
 void Menu::init()
@@ -65,6 +67,8 @@ void Menu::init()
         case 3: getElementOfMatrix(m_chMatrix_1); break;
         case 4: getElementOfMatrix(m_chMatrix_2); break;
         case 5: addMatrices(); break;
+        case 6: addToMatrix(m_chMatrix_1,m_chMatrix_2); break;
+        case 7: addToMatrix(m_chMatrix_2, m_chMatrix_1); break;
 
         default: std::cout << "Menu point not found, exiting..." << std::endl;
         break;
@@ -89,12 +93,9 @@ void Menu::getElementOfMatrix(ChessMatrix *matrix)
         std::cin >> colNum;
 
         int element;
-        try
-        {
+        try {
             element = matrix->getElement(rowNum - 1, colNum - 1);
-        }
-        catch (ChessMatrix::ChessMatrixExceptions excpt)
-        {
+            } catch (ChessMatrix::ChessMatrixExceptions excpt) {
             switch (excpt)
             {
             case ChessMatrix::ChessMatrixExceptions::INDEX_OUT_OF_BOUNDS:
@@ -136,4 +137,25 @@ void Menu::addMatrices()
     std::cout << "=========================ADDITION RESULT========================" << std::endl;
     std::cout << *resultMatrix;
     delete resultMatrix;
+}
+
+void Menu::addToMatrix(ChessMatrix* lhs, ChessMatrix* rhs)
+{
+    try {
+        (*lhs) += (*rhs);
+    } catch (ChessMatrix::ChessMatrixExceptions excpt) {
+        switch (excpt)
+        {
+        case ChessMatrix::ChessMatrixExceptions::UNMATCHING_DIMENSIONS:
+            std::cout << "Cannot add two matrices with unmatching dimensions!" << std::endl;
+            return;
+            break;
+        default:
+            std::cout << "Unhandled exception!" << std::endl;
+            return;
+            break;
+        }
+    }
+    std::cout << "========================= ADD TO MATRIX =========================" << std::endl;
+    std::cout << "Addition was successfull" << std::endl;
 }
