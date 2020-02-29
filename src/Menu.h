@@ -17,7 +17,6 @@ class Menu
         void getElementOfMatrix(ChessMatrix* matrix);
         void addMatrices();
         void multiplyMatrices();
-        void getMatrixElement();
 
     public:
         Menu();                                                 //Default with 8x8 matrix

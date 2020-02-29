@@ -46,6 +46,7 @@ void Menu::printOptions()
     std::cout << " 2. - Print Matrix Two" << std::endl;
     std::cout << " 3. - Get element M[i,j] from Matrix One" << std::endl;
     std::cout << " 4. - Get element M[i,j] from Matrix Two" << std::endl;
+    std::cout << " 5. - Print result of (Matrix One + Matrix Two)" << std::endl;
 }
 
 void Menu::init()
@@ -63,7 +64,7 @@ void Menu::init()
         case 2: printMatrix(m_chMatrix_2); break;
         case 3: getElementOfMatrix(m_chMatrix_1); break;
         case 4: getElementOfMatrix(m_chMatrix_2); break;
-        case 5: break;
+        case 5: addMatrices(); break;
 
         default: std::cout << "Menu point not found, exiting..." << std::endl;
         break;
@@ -109,4 +110,30 @@ void Menu::getElementOfMatrix(ChessMatrix *matrix)
         }
         std::cout << "========================GET ELEMENT========================" << std::endl;
         std::cout << "M[" << rowNum << "," << colNum << "] = " << element << std::endl << std::endl;
+}
+
+void Menu::addMatrices()
+{
+    ChessMatrix* resultMatrix = nullptr;
+    try {
+        resultMatrix = new ChessMatrix((*m_chMatrix_1 + *m_chMatrix_2));
+    } catch (ChessMatrix::ChessMatrixExceptions excpt) {
+        switch (excpt)
+        {
+        case ChessMatrix::ChessMatrixExceptions::UNMATCHING_DIMENSIONS:
+            std::cout << "Cannot add two matrices with unmatching dimensions!" << std::endl;
+            delete resultMatrix;
+            return;
+            break;
+        
+        default:
+            std::cout << "Unhandled exception!" << std::endl;
+            delete resultMatrix;
+            return;
+            break;
+        }
+    }
+    std::cout << "=========================ADDITION RESULT========================" << std::endl;
+    std::cout << *resultMatrix;
+    delete resultMatrix;
 }
