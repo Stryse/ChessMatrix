@@ -49,6 +49,11 @@ void Menu::printOptions()
     std::cout << " 5. - Print result of (Matrix One + Matrix Two)" << std::endl;
     std::cout << " 6. - Add Matrix Two to Matrix One" << std::endl;
     std::cout << " 7. - Add Matrix One to Matrix Two" << std::endl;
+    std::cout << " 8. - Print result of (Matrix One * Matrix Two)" << std::endl;
+    std::cout << " 9. - Print result of (Matrix Two * Matrix One)" << std::endl;
+    std::cout << " 10.- Multiply Matrix One with Matrix Two" << std::endl;
+    std::cout << " 11.- Multiply Matrix Two with Matrix One" << std::endl;
+    std::cout << "============================================================" << std::endl;
 }
 
 void Menu::init()
@@ -89,7 +94,7 @@ void Menu::getElementOfMatrix(ChessMatrix *matrix)
         std::cout << "============================" << std::endl;
         std::cout << "Please enter the row index: ";
         std::cin >> rowNum;
-        std::cout << "Please enter the column column: ";
+        std::cout << "Please enter the column index: ";
         std::cin >> colNum;
 
         int element;
