@@ -39,6 +39,40 @@ TEST_CASE("ReadInvalidFromFile","../tests/Test02_READINVALID.txt")
 {
 }
 
+TEST_CASE("Construct with default values (1)")
+{
+    ChessMatrix CM(3,3);
+
+    CHECK(CM.dimM == 3);
+    CHECK(CM.dimN == 3);
+    CHECK(CM[0][0] == 1);
+    CHECK(CM[0][1] == 0);
+    CHECK(CM[0][2] == 1);
+    CHECK(CM[1][0] == 0);
+    CHECK(CM[1][1] == 1);
+    CHECK(CM[1][2] == 0);
+    CHECK(CM[2][0] == 1);
+    CHECK(CM[2][1] == 0);
+    CHECK(CM[2][2] == 1);
+}
+
+TEST_CASE("Construct with given initial values")
+{
+    ChessMatrix CM(3,3,9);
+
+    CHECK(CM.dimM == 3);
+    CHECK(CM.dimN == 3);
+    CHECK(CM[0][0] == 9);
+    CHECK(CM[0][1] == 0);
+    CHECK(CM[0][2] == 9);
+    CHECK(CM[1][0] == 0);
+    CHECK(CM[1][1] == 9);
+    CHECK(CM[1][2] == 0);
+    CHECK(CM[2][0] == 9);
+    CHECK(CM[2][1] == 0);
+    CHECK(CM[2][2] == 9);
+}
+
 TEST_CASE("Adding two valid matrices","../tests/Test03_ADDVALID.txt")
 {
     const std::string inputPath = "../tests/Test03_ADDVALID.txt";
