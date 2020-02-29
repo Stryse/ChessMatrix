@@ -1,34 +1,41 @@
 #include <iostream>
 #include <fstream>
+#include <clocale>
 
 #include "./ChessMatrix.h"
+#include "./Menu.h"
 
-const char* inputPath = "../tests/Test_01.txt";
+void printInstructions();
 
-int main(void)
+int main(int argc,const char** argv)
 {
-    std::ifstream ifs(inputPath);
-
-    if(ifs.fail())
+    Menu* m;
+    switch (argc)
     {
-        std::cout << "Hiba tortent a fajl megnyitasa kozben" << std::endl;
-        return 1;
+        case 1: m = new Menu(); break; //Entry
+        case 2:
+                if(std::string(argv[1]) == "help")
+                {
+                    printInstructions();
+                    return 0;
+                }
+                else try
+                {
+                    m = new Menu(argv[1]); // Entry
+                } catch (std::exception& fileOpenExcpt) {
+                    std::cout << fileOpenExcpt.what() << std::endl;
+                    return 1;
+                }
+        break;
+
+        default: printInstructions(); return 1;
     }
-    
-    size_t N,M;
-    ifs >> N >> M;
 
-    ChessMatrix CM(N,M);
-    ifs >> CM;
-
-    ifs >> N >> M;
-    ChessMatrix CM2(N,M);
-    ifs >> CM2;
-
-    std::cout << "SIZE:" << CM.dimM << " " << CM.dimN << " " << CM2.dimM << " " << CM2.dimN << std::endl;
-
-    CM += CM2;
-    std::cout << CM;
-
+    m->init();    
     return 0;
+}
+
+void printInstructions()
+{
+    std::cout << "fasz" << std::endl;
 }
