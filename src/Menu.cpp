@@ -3,6 +3,7 @@
 
 //---------------Constructors-----------------//
 
+//Default 8x8 matrices with values of 0 and 1
 Menu::Menu()
     : m_chMatrix_1(new ChessMatrix(8,8)), m_chMatrix_2(new ChessMatrix(8,8))
 {}
@@ -29,6 +30,14 @@ Menu::Menu(const std::string &inputPath)
     m_chMatrix_2 = matrixTwo;
 }
 
+Menu::Menu(const size_t& dimM_1,const size_t& dimN_1,int values_1,
+     const size_t& dimM_2, const size_t& dimN_2,int values_2)
+    :m_chMatrix_1(new ChessMatrix(dimM_1,dimN_1,values_1)), 
+     m_chMatrix_2(new ChessMatrix(dimM_2,dimN_2,values_2))
+{
+    std::cout << "Matrices Initialized!" << std::endl;
+} 
+
 Menu::~Menu()
 {
     delete m_chMatrix_1;
@@ -36,7 +45,7 @@ Menu::~Menu()
 }
 
 //---------------Member functions-------------//
-void Menu::printOptions()
+void Menu::printOptions() const
 {
     std::cout << "================= ChessMatrix Program Menu =================" << std::endl
               << std::endl;
@@ -80,12 +89,12 @@ void Menu::init()
     } while (choice != 0);
 }
 
-void Menu::printMatrix(ChessMatrix* matrix)
+void Menu::printMatrix(ChessMatrix* matrix) const
 {
     std::cout << *matrix;
 }
 
-void Menu::getElementOfMatrix(ChessMatrix *matrix)
+void Menu::getElementOfMatrix(ChessMatrix *matrix) const
 {
         size_t rowNum;
         size_t colNum;
@@ -117,7 +126,7 @@ void Menu::getElementOfMatrix(ChessMatrix *matrix)
         std::cout << "M[" << rowNum << "," << colNum << "] = " << element << std::endl << std::endl;
 }
 
-void Menu::addMatrices()
+void Menu::addMatrices() const
 {
     ChessMatrix* resultMatrix = nullptr;
     try {

@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 #include <fstream>
 
 #include "./ChessMatrix.h"
@@ -26,13 +27,17 @@ int main(int argc,const char** argv)
                     return 1;
                 }
         break;
-        case 7:
+        case 7: m = new Menu(std::atol(argv[1]),std::atol(argv[2]),
+                             std::atol(argv[3]),std::atol(argv[4]),
+                             std::atol(argv[5]),std::atol(argv[6]));
+
         break;
 
         default: printProgramInstructions(); return 1;
     }
 
-    m->init();    
+    m->init();
+    delete m;    
     return 0;
 }
 

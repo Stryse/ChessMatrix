@@ -12,16 +12,22 @@ class Menu
         ChessMatrix* m_chMatrix_2;
 
     private:
-        void printOptions();
-        void printMatrix(ChessMatrix* matrix);
-        void getElementOfMatrix(ChessMatrix* matrix);
-        void addMatrices();
+        void printOptions() const;
+        void printMatrix(ChessMatrix* matrix) const;
+        void getElementOfMatrix(ChessMatrix* matrix) const;
+        void addMatrices() const;
         void addToMatrix(ChessMatrix* lhs, ChessMatrix* rhs);
-        void multiplyMatrices();
+        void multiplyMatrices() const;
 
     public:
-        Menu();                                                 //Default with 8x8 matrix
-        Menu(const std::string& inputPath);                     //Inputfile from cmdline argument
+        //Default with 8x8 matrix                                                         
+        Menu();
+        //Inputfile from cmdline argument                             
+        Menu(const std::string& inputPath);
+        //N*M And P*Q matrices with values v1,v2
+        Menu(const size_t& dimM_1, const size_t& dimN_1,int values_1,
+             const size_t& dimM_2, const size_t& dimN_2,int values_2);
+
         ~Menu();
 
         void init();
