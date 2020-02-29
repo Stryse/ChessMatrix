@@ -25,6 +25,7 @@ Menu::Menu(const std::string &inputPath)
     ifs >> M >> N;
     ChessMatrix *matrixTwo = new ChessMatrix(M, N);
     ifs >> *matrixTwo;
+    ifs.close();
 
     m_chMatrix_1 = matrixOne;
     m_chMatrix_2 = matrixTwo;

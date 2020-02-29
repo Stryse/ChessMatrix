@@ -20,9 +20,11 @@ class ChessMatrix
                 ProxyObject(const size_t& rowInd, const ChessMatrix& parent);
                 ProxyObject(const ProxyObject& rhs);
 
+            public:
                 //Operator
                 int operator[](const size_t& colInd) const;
-
+            
+            private:
                 //Deleted functions
                 ProxyObject() = delete;
                 void* operator new (std::size_t size) = delete;
