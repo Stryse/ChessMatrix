@@ -60,8 +60,6 @@ void Menu::printOptions() const
     std::cout << " 7. - Add Matrix One to Matrix Two" << std::endl;
     std::cout << " 8. - Print result of (Matrix One * Matrix Two)" << std::endl;
     std::cout << " 9. - Print result of (Matrix Two * Matrix One)" << std::endl;
-    std::cout << " 10.- Multiply Matrix One with Matrix Two" << std::endl;
-    std::cout << " 11.- Multiply Matrix Two with Matrix One" << std::endl;
     std::cout << "============================================================" << std::endl;
 }
 
@@ -85,8 +83,6 @@ void Menu::init()
         case 7: addToMatrix(m_chMatrix_2, m_chMatrix_1); break;
         case 8: multiplyMatrices(m_chMatrix_1,m_chMatrix_2); break;
         case 9: multiplyMatrices(m_chMatrix_2,m_chMatrix_1); break;
-        case 10:multiplyToMatrix(m_chMatrix_1,m_chMatrix_2); break;
-        case 11:multiplyToMatrix(m_chMatrix_2,m_chMatrix_1); break;
 
         default: std::cout << "Menu point not found, exiting..." << std::endl;
         return;
@@ -204,25 +200,4 @@ void Menu::multiplyMatrices(ChessMatrix* lhs, ChessMatrix* rhs) const
     std::cout << "=========================MULTIPLICATION RESULT========================" << std::endl;
     std::cout << *resultMatrix;
     delete resultMatrix;
-}
-
-void Menu::multiplyToMatrix(ChessMatrix* lhs, ChessMatrix* rhs)
-{
-    try {
-        (*lhs) *= (*rhs);
-    } catch (ChessMatrix::ChessMatrixExceptions excpt) {
-        switch (excpt)
-        {
-        case ChessMatrix::ChessMatrixExceptions::INVALID_DIMS_FOR_MULTIPLY:
-            std::cout << "Cannot multiply two matrices with unproper dimensions!" << std::endl;
-            return;
-            break;
-        default:
-            std::cout << "Unhandled exception!" << std::endl;
-            return;
-            break;
-        }
-    }
-    std::cout << "========================= MULTIPLY TO MATRIX =========================" << std::endl;
-    std::cout << "Multiplication was successfull" << std::endl;
 }

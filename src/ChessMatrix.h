@@ -73,7 +73,6 @@ class ChessMatrix
         //Operators
         ChessMatrix& operator= (const ChessMatrix& rhs);
         ChessMatrix& operator+=(const ChessMatrix& rhs);
-        ChessMatrix& operator*=(const ChessMatrix& rhs);
        
     //--------------Private member functions-----------//
     private:

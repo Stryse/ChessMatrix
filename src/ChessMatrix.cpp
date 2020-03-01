@@ -119,12 +119,6 @@ ChessMatrix& ChessMatrix::operator+=(const ChessMatrix& rhs)
     return *this;
 }
 
-ChessMatrix& ChessMatrix::operator*=(const ChessMatrix& rhs)
-{
-    *this = this->multiply(rhs);
-    return *this;
-}
-
 //-------------Private member functions------------//
 constexpr size_t ChessMatrix::calcBufferSize(const size_t& n, const size_t& m) const noexcept
 { return ((n*m)%2 == 0 ? (n*m)/2 : ((n*m)+1)/2); }

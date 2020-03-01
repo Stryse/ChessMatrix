@@ -283,11 +283,11 @@ TEST_CASE("Multiplication", "../tests/Test09_MULTIPLICATION.txt")
     ChessMatrix* CM = testf::readToMatrix(ifs); // 2x2
     ChessMatrix* CAN_MULT = testf::readToMatrix(ifs); // 2x2
 
-    ChessMatrix* CM2 = testf::readToMatrix(ifs);
-    ChessMatrix* CAN_MULT2 = testf::readToMatrix(ifs);
+    ChessMatrix* CM2 = testf::readToMatrix(ifs); // 3x3
+    ChessMatrix* CAN_MULT2 = testf::readToMatrix(ifs); // 3x3
 
-    ChessMatrix* CM3 = testf::readToMatrix(ifs);
-    ChessMatrix* CAN_MULT3 = testf::readToMatrix(ifs);
+    ChessMatrix* CM3 = testf::readToMatrix(ifs); // 3x2
+    ChessMatrix* CAN_MULT3 = testf::readToMatrix(ifs); // 2x3
 
     SECTION("CAN MULTIPLY")
     {
@@ -331,6 +331,12 @@ TEST_CASE("Multiplication", "../tests/Test09_MULTIPLICATION.txt")
             CHECK(MULTED[1][0] == 0);
             CHECK(MULTED[1][1] == 2);
         }
+    }
+
+    SECTION("Cant multiply, unproper dimensions")
+    {
+        CHECK_FALSE(CM->dimN == CM2->dimM);
+        CHECK_THROWS((*CM) * (*CM2));
     }
 
     ifs.close();
