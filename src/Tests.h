@@ -6,6 +6,7 @@
 // 2020.03.01
 
 #include <fstream>
+#include "catch.hpp"
 #include "ChessMatrix.h"
 
 // HELPER FUNCTIONS
