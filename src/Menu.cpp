@@ -6,7 +6,9 @@
 //Default 8x8 matrices with values of 0 and 1
 Menu::Menu()
     : m_chMatrix_1(new ChessMatrix(8,8)), m_chMatrix_2(new ChessMatrix(8,8))
-{}
+{
+    std::cout << "Matrices Initialized!" << std::endl;
+}
 
 //Matrices are read from file at inputPath
 Menu::Menu(const std::string &inputPath)
@@ -29,6 +31,8 @@ Menu::Menu(const std::string &inputPath)
 
     m_chMatrix_1 = matrixOne;
     m_chMatrix_2 = matrixTwo;
+
+    std::cout << "Matrices Initialized!" << std::endl;
 }
 
 Menu::Menu(const size_t& dimM_1,const size_t& dimN_1,int values_1,

@@ -47,7 +47,7 @@ class ChessMatrix
     //--------------Constructors-----------------------//
         ChessMatrix() = delete;                                     // Default not permitted
         ChessMatrix(const size_t& m, const size_t& n);              // Size parameters
-        ChessMatrix(const size_t& m, const size_t& n, int values);  // Size w/ Values included 
+        ChessMatrix(const size_t& m, const size_t& n, int values);  // Size w/ values 
         ChessMatrix(const ChessMatrix& rhs);                        // Copy constructor
         ~ChessMatrix();                                             // Destructor
 

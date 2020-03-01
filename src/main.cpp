@@ -19,6 +19,7 @@ int main(int argc,const char** argv)
                 if(std::string(argv[1]) == "help")
                 {
                     printProgramInstructions();
+                    delete m;
                     return 0;
                 }
                 else try
@@ -26,6 +27,7 @@ int main(int argc,const char** argv)
                     m = new Menu(argv[1]); // Entry, filpath cmdline arg
                 } catch (std::exception& fileOpenExcpt) {
                     std::cout << fileOpenExcpt.what() << std::endl;
+                    delete m;
                     return 1;
                 }
         break;
@@ -35,7 +37,8 @@ int main(int argc,const char** argv)
 
         break;
 
-        default: printProgramInstructions(); return 1;
+        default: printProgramInstructions(); delete m; 
+        return 1;
     }
 
     m->init();

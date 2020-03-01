@@ -20,6 +20,7 @@ int ChessMatrix::ProxyObject::operator[](const size_t& colInd) const
 ChessMatrix::ChessMatrix(const size_t& m, const size_t& n)
             :m_matrix(calcBufferSize(n,m),1), dimM(m), dimN(n) {}
 
+//Size w/ initial values
 ChessMatrix::ChessMatrix(const size_t& m, const size_t& n, int values)
             :m_matrix(calcBufferSize(n,m),values), dimM(m), dimN(n) {}
 
@@ -98,7 +99,7 @@ ChessMatrix ChessMatrix::operator*(const ChessMatrix& rhs) const
 //---------------Static functions-----------------//
 bool ChessMatrix::isZeroValue(const size_t& i, const size_t& j)
 {
-    return (i%2 == 0 && j%2 == 1) || (i%2 == 1 && j%2 == 0);
+    return i % 2 != j % 2;
 }
 
 //----------Public non-const member functions------//
