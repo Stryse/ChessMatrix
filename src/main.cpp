@@ -5,7 +5,7 @@
 #include "./ChessMatrix.h"
 #include "./Menu.h"
 
-#define NORMAL_MODE
+//#define NORMAL_MODE
 #ifdef NORMAL_MODE
 void printProgramInstructions();
 
