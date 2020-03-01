@@ -1,6 +1,10 @@
 #ifndef _CHESSMATRIX__H
 #define _CHESSMATRIX__H
 
+// OEP 1. Beadandó 1. Feladat - Sakktábla mátrix
+// Készítette: Kis Gergely Domonkos (VMT982)
+// 2020.03.01
+
 #include <iostream>
 #include <vector>
 
@@ -40,7 +44,7 @@ class ChessMatrix
     public:
         const size_t dimM, dimN;  // Sizes
         enum class ChessMatrixExceptions { UNMATCHING_DIMENSIONS, INVALID_DIMS_FOR_MULTIPLY,
-                                           INDEX_OUT_OF_BOUNDS };
+                                           INDEX_OUT_OF_BOUNDS, UNACCEPTED_INPUT };
 
     public:
 

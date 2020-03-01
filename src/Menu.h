@@ -1,6 +1,10 @@
 #ifndef _MENU__H
 #define _MENU__H
 
+// OEP 1. Beadandó 1. Feladat - Sakktábla mátrix
+// Készítette: Kis Gergely Domonkos (VMT982)
+// 2020.03.01
+
 #include <iostream>
 #include <string>
 #include ".\ChessMatrix.h"

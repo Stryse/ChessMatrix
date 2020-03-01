@@ -1,6 +1,10 @@
 #include <fstream>
 #include ".\Menu.h"
 
+// OEP 1. Beadandó 1. Feladat - Sakktábla mátrix
+// Készítette: Kis Gergely Domonkos (VMT982)
+// 2020.03.01
+
 //---------------Constructors-----------------//
 
 //Default 8x8 matrices with values of 0 and 1
@@ -114,19 +118,18 @@ void Menu::getElementOfMatrix(ChessMatrix *matrix) const
 
         int element;
         try {
-            element = matrix->getElement(rowNum - 1, colNum - 1);
+                element = matrix->getElement(rowNum - 1, colNum - 1);
             } catch (ChessMatrix::ChessMatrixExceptions excpt) {
             switch (excpt)
             {
-            case ChessMatrix::ChessMatrixExceptions::INDEX_OUT_OF_BOUNDS:
-                std::cout << "Overindexing!" << std::endl;
-                return;
-                break;
+                case ChessMatrix::ChessMatrixExceptions::INDEX_OUT_OF_BOUNDS:
+                    std::cout << "Overindexing!" << std::endl;
+                    return; break;
 
-            default:
-                std::cout << "Unhandled exception" << std::endl;
-                return;
-                break;
+                default:
+                    std::cout << "Unhandled exception" << std::endl;
+                    return;
+                    break;
             }
         }
         std::cout << "========================GET ELEMENT=========================" << std::endl;
@@ -141,17 +144,15 @@ void Menu::addMatrices() const
     } catch (ChessMatrix::ChessMatrixExceptions excpt) {
         switch (excpt)
         {
-        case ChessMatrix::ChessMatrixExceptions::UNMATCHING_DIMENSIONS:
-            std::cout << "Cannot add two matrices with unmatching dimensions!" << std::endl;
-            delete resultMatrix;
-            return;
-            break;
+            case ChessMatrix::ChessMatrixExceptions::UNMATCHING_DIMENSIONS:
+                std::cout << "Cannot add two matrices with unmatching dimensions!" << std::endl;
+                delete resultMatrix;
+                return; break;
         
-        default:
-            std::cout << "Unhandled exception!" << std::endl;
-            delete resultMatrix;
-            return;
-            break;
+            default:
+                std::cout << "Unhandled exception!" << std::endl;
+                delete resultMatrix;
+                return; break;
         }
     }
     std::cout << "=========================ADDITION RESULT========================" << std::endl;
@@ -166,14 +167,12 @@ void Menu::addToMatrix(ChessMatrix* lhs, ChessMatrix* rhs)
     } catch (ChessMatrix::ChessMatrixExceptions excpt) {
         switch (excpt)
         {
-        case ChessMatrix::ChessMatrixExceptions::UNMATCHING_DIMENSIONS:
-            std::cout << "Cannot add two matrices with unmatching dimensions!" << std::endl;
-            return;
-            break;
-        default:
-            std::cout << "Unhandled exception!" << std::endl;
-            return;
-            break;
+            case ChessMatrix::ChessMatrixExceptions::UNMATCHING_DIMENSIONS:
+                std::cout << "Cannot add two matrices with unmatching dimensions!" << std::endl;
+                return; break;
+            default:
+                std::cout << "Unhandled exception!" << std::endl;
+                return; break;
         }
     }
     std::cout << "========================= ADD TO MATRIX =========================" << std::endl;
@@ -188,17 +187,15 @@ void Menu::multiplyMatrices(ChessMatrix* lhs, ChessMatrix* rhs) const
     } catch (ChessMatrix::ChessMatrixExceptions excpt) {
         switch (excpt)
         {
-        case ChessMatrix::ChessMatrixExceptions::INVALID_DIMS_FOR_MULTIPLY:
-            std::cout << "Cannot multiply two matrices with unproper dimensions!" << std::endl;
-            delete resultMatrix;
-            return;
-            break;
+            case ChessMatrix::ChessMatrixExceptions::INVALID_DIMS_FOR_MULTIPLY:
+                std::cout << "Cannot multiply two matrices with unproper dimensions!" << std::endl;
+                delete resultMatrix;
+                return; break;
         
         default:
-            std::cout << "Unhandled exception!" << std::endl;
-            delete resultMatrix;
-            return;
-            break;
+                std::cout << "Unhandled exception!" << std::endl;
+                delete resultMatrix;
+                return; break;
         }
     }
     std::cout << "=========================MULTIPLICATION RESULT========================" << std::endl;

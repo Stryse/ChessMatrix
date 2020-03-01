@@ -1,3 +1,7 @@
+// OEP 1. Beadandó 1. Feladat - Sakktábla mátrix
+// Készítette: Kis Gergely Domonkos (VMT982)
+// 2020.03.01
+
 #include "./ChessMatrix.h"
 
 //--------------Inner class ProxyObject------------//
@@ -129,7 +133,11 @@ constexpr size_t ChessMatrix::calcBufferSize(const size_t& n, const size_t& m) c
 std::istream& operator>>(std::istream& stream, ChessMatrix& matrix)
 {
     for(size_t i = 0; i < matrix.m_matrix.size(); ++i)
+    {
         stream >> matrix.m_matrix[i];
+        if(stream.fail())
+            throw ChessMatrix::ChessMatrixExceptions::UNACCEPTED_INPUT;
+    }
     return stream;
 }
 

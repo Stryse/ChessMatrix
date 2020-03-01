@@ -1,6 +1,10 @@
 #ifndef _TESTS__H
 #define _TESTS__H
 
+// OEP 1. Beadandó 1. Feladat - Sakktábla mátrix
+// Készítette: Kis Gergely Domonkos (VMT982)
+// 2020.03.01
+
 #include <fstream>
 #include "ChessMatrix.h"
 
@@ -52,6 +56,11 @@ TEST_CASE("ReadValidFromFile", "../tests/Test01_READVALID.txt")
 
 TEST_CASE("ReadInvalidFromFile", "../tests/Test02_READINVALID.txt")
 {
+    auto ifs = testf::inputStream("../tests/Test02_READINVALID.txt");
+    ChessMatrix* CM = nullptr;
+    CHECK_THROWS(CM = testf::readToMatrix(ifs));
+    ifs.close();
+    delete CM;
 }
 
 TEST_CASE("Construct with default values (1)")

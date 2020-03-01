@@ -1,3 +1,8 @@
+// OEP 1. Beadandó 1. Feladat - Sakktábla mátrix
+// Készítette: Kis Gergely Domonkos (VMT982)
+// 2020.03.01
+
+
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
@@ -5,13 +10,13 @@
 #include "./ChessMatrix.h"
 #include "./Menu.h"
 
-//#define NORMAL_MODE
+#define NORMAL_MODE
 #ifdef NORMAL_MODE
 void printProgramInstructions();
 
 int main(int argc,const char** argv)
 {
-    Menu* m;
+    Menu* m = nullptr;
     switch (argc)
     {
         case 1: m = new Menu(); break; //Entry, no cmdline args
@@ -19,7 +24,6 @@ int main(int argc,const char** argv)
                 if(std::string(argv[1]) == "help")
                 {
                     printProgramInstructions();
-                    delete m;
                     return 0;
                 }
                 else try
@@ -30,6 +34,19 @@ int main(int argc,const char** argv)
                     delete m;
                     return 1;
                 }
+                catch(ChessMatrix::ChessMatrixExceptions& excpt)
+                {
+                    if(excpt == ChessMatrix::ChessMatrixExceptions::UNACCEPTED_INPUT)
+                    {
+                        std::cout << "Invalid input in file: " << argv[1] 
+                        << " Please check if it contains valid input" << std::endl;
+                    }
+                    else
+                        std::cout << "Unhandled exception" << std::endl;
+
+                    delete m;
+                    return 1;
+                }
         break;
         case 7: m = new Menu(std::atol(argv[1]),std::atol(argv[2]), //Entry
                              std::atol(argv[3]),std::atol(argv[4]),
@@ -37,7 +54,7 @@ int main(int argc,const char** argv)
 
         break;
 
-        default: printProgramInstructions(); delete m; 
+        default: printProgramInstructions(); 
         return 1;
     }
 
