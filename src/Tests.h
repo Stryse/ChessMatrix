@@ -170,7 +170,6 @@ TEST_CASE("AddTo", "../tests/Test08_ADDTO.txt")
     delete CANT_ADD;
 }
 
-
 TEST_CASE("GetElement", "../tests/Test05_GETELEMENT.txt")
 {
     auto ifs = testf::inputStream("../tests/Test05_GETELEMENT.txt");
@@ -215,7 +214,6 @@ TEST_CASE("GetElement", "../tests/Test05_GETELEMENT.txt")
     ifs.close();
     delete CM;
 }
-
 
 TEST_CASE("Copy Constructor", "../tests/Test06_COPYCTOR.txt")
 {
@@ -277,6 +275,32 @@ TEST_CASE("Copy Assignment operator", "../tests/Test07_COPYASSIGNMENT.txt")
 
     ifs.close();
     delete CM;
+}
+
+TEST_CASE("Multiplication", "../tests/Test09_MULTIPLICATION.txt")
+{
+    auto ifs = testf::inputStream("../tests/Test09_MULTIPLICATION.txt");
+    ChessMatrix* CM = testf::readToMatrix(ifs); // 2x2
+    ChessMatrix* CAN_MULT = testf::readToMatrix(ifs); // 2x2
+
+    SECTION("CAN MULTIPLY")
+    {
+        SECTION("Same dimensions (2x2) - even")
+        {
+            ChessMatrix MULTED((*CM) * (*CAN_MULT));
+            CHECK(CM->dimN == CAN_MULT->dimM);
+            CHECK(MULTED.dimM == CM->dimM);
+            CHECK(MULTED.dimN == CAN_MULT->dimN);
+            CHECK(MULTED[0][0] == 8);
+            CHECK(MULTED[0][1] == 0);
+            CHECK(MULTED[1][0] == 0);
+            CHECK(MULTED[1][1] == 9);
+        }
+    }
+
+    ifs.close();
+    delete CM;
+    delete CAN_MULT;
 }
 
 #endif
