@@ -17,7 +17,7 @@ class Menu
         void getElementOfMatrix(ChessMatrix* matrix) const;
         void addMatrices() const;
         void addToMatrix(ChessMatrix* lhs, ChessMatrix* rhs);
-        void multiplyMatrices() const;
+        void multiplyMatrices(ChessMatrix* lhs, ChessMatrix* rhs) const;
         void multiplyToMatrix(ChessMatrix* lhs, ChessMatrix* rhs);
 
     public:

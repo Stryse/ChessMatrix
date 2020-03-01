@@ -83,6 +83,7 @@ void Menu::init()
         case 5: addMatrices(); break;
         case 6: addToMatrix(m_chMatrix_1,m_chMatrix_2); break;
         case 7: addToMatrix(m_chMatrix_2, m_chMatrix_1); break;
+        case 8: multiplyMatrices(m_chMatrix_1,m_chMatrix_2); break;
 
         default: std::cout << "Menu point not found, exiting..." << std::endl;
         return;
@@ -175,11 +176,11 @@ void Menu::addToMatrix(ChessMatrix* lhs, ChessMatrix* rhs)
     std::cout << "Addition was successfull" << std::endl;
 }
 
-void Menu::multiplyMatrices() const
+void Menu::multiplyMatrices(ChessMatrix* lhs, ChessMatrix* rhs) const
 {
     ChessMatrix* resultMatrix = nullptr;
     try {
-        resultMatrix = new ChessMatrix(((*m_chMatrix_1) * (*m_chMatrix_2)));
+        resultMatrix = new ChessMatrix(((*lhs) * (*rhs)));
     } catch (ChessMatrix::ChessMatrixExceptions excpt) {
         switch (excpt)
         {
