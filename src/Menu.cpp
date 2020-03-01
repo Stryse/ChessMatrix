@@ -84,6 +84,9 @@ void Menu::init()
         case 6: addToMatrix(m_chMatrix_1,m_chMatrix_2); break;
         case 7: addToMatrix(m_chMatrix_2, m_chMatrix_1); break;
         case 8: multiplyMatrices(m_chMatrix_1,m_chMatrix_2); break;
+        case 9: multiplyMatrices(m_chMatrix_2,m_chMatrix_1); break;
+        case 10:multiplyToMatrix(m_chMatrix_1,m_chMatrix_2); break;
+        case 11:multiplyToMatrix(m_chMatrix_2,m_chMatrix_1); break;
 
         default: std::cout << "Menu point not found, exiting..." << std::endl;
         return;
@@ -94,6 +97,7 @@ void Menu::init()
 
 void Menu::printMatrix(ChessMatrix* matrix) const
 {
+    std::cout << "========================PRINT MATRIX========================" << std::endl;
     std::cout << *matrix;
 }
 
@@ -125,7 +129,7 @@ void Menu::getElementOfMatrix(ChessMatrix *matrix) const
                 break;
             }
         }
-        std::cout << "========================GET ELEMENT========================" << std::endl;
+        std::cout << "========================GET ELEMENT=========================" << std::endl;
         std::cout << "M[" << rowNum << "," << colNum << "] = " << element << std::endl << std::endl;
 }
 

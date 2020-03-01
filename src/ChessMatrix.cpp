@@ -73,7 +73,7 @@ ChessMatrix ChessMatrix::multiply(const ChessMatrix& rhs) const
 
             outputBuffer.m_matrix[newElemIdx] = cellSum;
         }
-        return outputBuffer;
+    return outputBuffer;
 }
 
  //Operators
