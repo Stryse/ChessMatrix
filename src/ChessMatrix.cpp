@@ -63,16 +63,20 @@ ChessMatrix ChessMatrix::multiply(const ChessMatrix& rhs) const
         throw ChessMatrixExceptions::INVALID_DIMS_FOR_MULTIPLY;
 
     ChessMatrix outputBuffer(dimM,rhs.dimN);
-    size_t newElemIdx = 0;
-        for(size_t i = 0; i < outputBuffer.m_matrix.size(); i++)
-        {
-            int cellSum = 0;
-                for(size_t j = (i % 2); j < rhs.dimN; j+=2)
-                    cellSum += (this->getElement((i % rhs.dimN),j)) * rhs.getElement(j,(i % rhs.dimN)); 
 
-            outputBuffer.m_matrix[newElemIdx++] = cellSum;
-        }
-    return outputBuffer;
+	size_t elementIdx = 0;
+	for (size_t i = 0; i < outputBuffer.dimM; i++)
+		for (size_t j = 0; j < outputBuffer.dimN; j++)
+			if (!ChessMatrix::isZeroValue(i, j))
+			{
+				int sum = 0;
+				for (size_t k = 0; k < dimN; k++)
+					sum += getElement(i, k) * rhs.getElement(k, j);
+                    
+				outputBuffer.m_matrix[elementIdx++] = sum;
+			}
+
+	return outputBuffer;
 }
 
  //Operators

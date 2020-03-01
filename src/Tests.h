@@ -283,6 +283,12 @@ TEST_CASE("Multiplication", "../tests/Test09_MULTIPLICATION.txt")
     ChessMatrix* CM = testf::readToMatrix(ifs); // 2x2
     ChessMatrix* CAN_MULT = testf::readToMatrix(ifs); // 2x2
 
+    ChessMatrix* CM2 = testf::readToMatrix(ifs);
+    ChessMatrix* CAN_MULT2 = testf::readToMatrix(ifs);
+
+    ChessMatrix* CM3 = testf::readToMatrix(ifs);
+    ChessMatrix* CAN_MULT3 = testf::readToMatrix(ifs);
+
     SECTION("CAN MULTIPLY")
     {
         SECTION("Same dimensions (2x2) - even")
@@ -296,11 +302,44 @@ TEST_CASE("Multiplication", "../tests/Test09_MULTIPLICATION.txt")
             CHECK(MULTED[1][0] == 0);
             CHECK(MULTED[1][1] == 9);
         }
+
+        SECTION("Same dimensions (3x3) - odd")
+        {
+            ChessMatrix MULTED((*CM2) * (*CAN_MULT2));
+            CHECK(CM2->dimN == CAN_MULT2->dimM);
+            CHECK(MULTED.dimM == CM2->dimM);
+            CHECK(MULTED.dimN == CAN_MULT2->dimN);
+            CHECK(MULTED[0][0] == 20);
+            CHECK(MULTED[0][1] == 0);
+            CHECK(MULTED[0][2] == 20);
+            CHECK(MULTED[1][0] == 0);
+            CHECK(MULTED[1][1] == 4);
+            CHECK(MULTED[1][2] == 0);
+            CHECK(MULTED[2][0] == 20);
+            CHECK(MULTED[2][1] == 0);
+            CHECK(MULTED[2][2] == 20);
+        }
+
+        SECTION("Different dimension (2x3) (3x2)")
+        {
+            ChessMatrix MULTED((*CM3) * (*CAN_MULT3));
+            CHECK(CM3->dimN == CAN_MULT3->dimM);
+            CHECK(MULTED.dimM == CM3->dimM);
+            CHECK(MULTED.dimN == CAN_MULT3->dimN);
+            CHECK(MULTED[0][0] == 11);
+            CHECK(MULTED[0][1] == 0);
+            CHECK(MULTED[1][0] == 0);
+            CHECK(MULTED[1][1] == 2);
+        }
     }
 
     ifs.close();
     delete CM;
+    delete CM2;
+    delete CM3;
     delete CAN_MULT;
+    delete CAN_MULT2;
+    delete CAN_MULT3;
 }
 
 #endif
