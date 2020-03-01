@@ -7,7 +7,7 @@
 
 #include <iostream>
 #include <string>
-#include ".\ChessMatrix.h"
+#include "ChessMatrix.h"
 
 class Menu
 {

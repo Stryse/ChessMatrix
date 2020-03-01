@@ -1,5 +1,5 @@
 #include <fstream>
-#include ".\Menu.h"
+#include "Menu.h"
 
 // OEP 1. Beadandó 1. Feladat - Sakktábla mátrix
 // Készítette: Kis Gergely Domonkos (VMT982)

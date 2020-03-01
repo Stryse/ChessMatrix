@@ -7,8 +7,8 @@
 #include <cstdlib>
 #include <fstream>
 
-#include "./ChessMatrix.h"
-#include "./Menu.h"
+#include "ChessMatrix.h"
+#include "Menu.h"
 
 #define NORMAL_MODE
 #ifdef NORMAL_MODE
@@ -75,6 +75,6 @@ void printProgramInstructions()
 }
 #else
 #define CATCH_CONFIG_MAIN
-#include "./catch.hpp"
-#include "./Tests.h"
+#include "catch.hpp"
+#include "Tests.h"
 #endif

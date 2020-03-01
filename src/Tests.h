@@ -28,7 +28,12 @@ namespace testf
         size_t M,N;
         ifs >> M >> N;
         ChessMatrix* CM = new ChessMatrix(M,N);
-        ifs >> *CM;
+        try{
+            ifs >> *CM;
+        } catch (ChessMatrix::ChessMatrixExceptions& excpt) {
+            delete CM; // No memory leaks
+            throw excpt;
+        }
         return CM;
     }
 } // namespace TESTF

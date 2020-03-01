@@ -2,7 +2,7 @@
 // Készítette: Kis Gergely Domonkos (VMT982)
 // 2020.03.01
 
-#include "./ChessMatrix.h"
+#include "ChessMatrix.h"
 
 //--------------Inner class ProxyObject------------//
 
